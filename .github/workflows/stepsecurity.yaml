@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  step-security
+  step-security:
     runs-on: ubuntu-latest
     permissions: # Required for workload identity auth and push the trivy results to GitHub
       contents: read

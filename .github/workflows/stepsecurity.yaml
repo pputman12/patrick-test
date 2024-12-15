@@ -1,9 +1,15 @@
-Name: test step security
+---
+name: step security
+
 on:
   push:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  auth-build-push-scan-container:
+  step-security
     runs-on: ${{ fromJson(inputs.runs_on) }}
     timeout-minutes: ${{ inputs.timeout-minutes }}
     permissions: # Required for workload identity auth and push the trivy results to GitHub
@@ -16,5 +22,6 @@ jobs:
         uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
+
 
 

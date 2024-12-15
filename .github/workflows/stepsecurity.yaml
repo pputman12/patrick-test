@@ -1,7 +1,7 @@
 Name: test step security
 on:
   push:
-  workflow:dispatch:
+  workflow_dispatch:
 jobs:
   auth-build-push-scan-container:
     runs-on: ${{ fromJson(inputs.runs_on) }}

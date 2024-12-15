@@ -1,0 +1,20 @@
+Name: test step security
+on:
+  push:
+  workflow:dispatch:
+jobs:
+  auth-build-push-scan-container:
+    runs-on: ${{ fromJson(inputs.runs_on) }}
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+    permissions: # Required for workload identity auth and push the trivy results to GitHub
+      contents: read
+      id-token: write
+      security-events: write
+    steps:
+      - name: Harden Runner
+        if: runner.environment == 'github-hosted'
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+
